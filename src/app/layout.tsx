@@ -1,3 +1,9 @@
+
+
+
+
+
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
@@ -28,28 +34,10 @@ export const metadata: Metadata = {
     description: 'Create stunning images with AI technology',
     url: 'https://stableimg.yourdomain.com',
     siteName: 'StableImg',
-    images: [
-      {
-        url: 'https://stableimg.yourdomain.com/og-image.jpg',
-        width: 1200,
-        height: 630,
-      },
-    ],
     locale: 'en_US',
     type: 'website',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'StableImg - Free AI Image Generator',
-    description: 'Create stunning images with AI technology',
-    creator: '@yourtwitterhandle',
-    images: ['https://stableimg.yourdomain.com/twitter-image.jpg'],
-  },
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-icon.png',
-  },
-  manifest: '/site.webmanifest',
+
 }
 
 export default function RootLayout({
@@ -60,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <ThemeProvider
           attribute="class"

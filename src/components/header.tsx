@@ -6,7 +6,7 @@ import { ModeToggle } from './ModeToggle';
 type HeaderProps = object
 const Header: FC<HeaderProps> = () => {
     return (
-        <header className="shadow-2xl z-50">
+        <header className="shadow-xl dark:shadow-slate-500">
             <div className="container mx-auto px-10 py-1 flex justify-between items-center border-b-2">
                 <div className="flex flex-col items-center">
                     <Link href="/" className=" gradient-text text-4xl font-bold transition-all duration-300 hover:scale-105">
