@@ -1,17 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  image: {
-    domains: ["./src./assets/images"],
+  images: {
     loader: "imgix",
-    unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "stableimg.vercel.app",
-        port: "",
-        pathname: "/**",
-      },
-    ],
+    path: "https://example.com/myaccount/",
+    path: "https://app.spline.design/",
   },
 };
 

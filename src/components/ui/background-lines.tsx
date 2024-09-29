@@ -17,7 +17,7 @@ export const BackgroundLines = ({
   return (
     <div
       className={cn(
-        "h-[20rem] md:h-screen w-full bg-white dark:bg-black",
+        "h-[20rem] md:h-screen w-full",
         className
       )}
     >
@@ -68,28 +68,18 @@ const SVG = ({
   ];
 
   const colors = [
-    "#46A5CA",
-    "#8C2F2F",
-    "#4FAE4D",
-    "#D6590C",
-    "#811010",
-    "#247AFB",
-    "#A534A0",
-    "#A8A438",
-    "#D6590C",
-    "#46A29C",
-    "#670F6D",
-    "#D7C200",
-    "#59BBEB",
-    "#504F1C",
-    "#55BC54",
-    "#4D3568",
-    "#9F39A5",
-    "#363636",
-    "#860909",
-    "#6A286F",
-    "#604483",
+    "#46A5CA", "#8C2F2F", "#4FAE4D", "#D6590C", "#811010", "#247AFB", "#A534A0", "#A8A438", "#D6590C", "#46A29C",
+    "#670F6D", "#D7C200", "#59BBEB", "#504F1C", "#55BC54", "#4D3568", "#9F39A5", "#363636", "#860909", "#6A286F",
+    "#604483", "#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A", "#98FB98", "#DDA0DD", "#20B2AA", "#FF69B4", "#00CED1",
+    "#FF7F50", "#9370DB", "#3CB371", "#F08080", "#6495ED", "#FFA500", "#FF4500", "#DA70D6", "#1E90FF", "#32CD32",
+    "#FF1493", "#00FA9A", "#9932CC", "#8FBC8F", "#E9967A", "#8A2BE2", "#00FF7F", "#DC143C", "#00BFFF", "#ADFF2F",
+    "#FF00FF", "#1E90FF", "#F0E68C", "#FFDAB9", "#B0C4DE", "#FF6347", "#7B68EE", "#D8BFD8", "#DEB887", "#FFDAB9",
+    "#20B2AA", "#B0E0E6", "#FF69B4", "#CD5C5C", "#4682B4", "#D2691E", "#9ACD32", "#40E0D0", "#48D1CC", "#5F9EA0",
+    "#7FFF00", "#F0FFF0", "#FA8072", "#FF7F50", "#00FF00", "#8B008B", "#556B2F", "#FF8C00", "#9932CC", "#8B0000",
+    "#E0FFFF", "#FAFAD2", "#90EE90", "#D3D3D3", "#FFB6C1", "#FFA07A", "#F0E68C", "#FFEFD5", "#FFE4B5", "#FFDAB9",
+    "#EEE8AA", "#F0FFF0", "#F5F5DC", "#FDF5E6", "#FFFACD", "#FFF5EE", "#F5DEB3", "#FFF8DC", "#FFFAF0", "#FFFFF0"
   ];
+
   return (
     <motion.svg
       viewBox="0 0 1440 900"
@@ -98,12 +88,13 @@ const SVG = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="absolute inset-0 w-full h-full"
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ zIndex: -1 }}
     >
       {paths.map((path, idx) => (
         <motion.path
           d={path}
-          stroke={colors[idx]}
+          stroke={colors[idx % colors.length]}
           strokeWidth="2.3"
           strokeLinecap="round"
           variants={pathVariants}
@@ -121,11 +112,10 @@ const SVG = ({
         />
       ))}
 
-      {/* duplicate for more paths */}
       {paths.map((path, idx) => (
         <motion.path
           d={path}
-          stroke={colors[idx]}
+          stroke={colors[(idx + colors.length / 2) % colors.length]}
           strokeWidth="2.3"
           strokeLinecap="round"
           variants={pathVariants}
