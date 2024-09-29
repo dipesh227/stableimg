@@ -67,3 +67,49 @@
     @apply bg-background text-foreground;
   }
 }
+.gradient-background {
+  background: linear-gradient(
+    82deg,
+    #377653,
+    #7cdfac,
+    #894d74,
+    #e99101,
+    #e149d2
+  );
+  background-size: 300% 300%;
+  animation: gradient-animation 35s ease infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(
+    82deg,
+    #377653,
+    #7cdfac,
+    #894d74,
+    #e99101,
+    #e149d2,
+    #3498db,
+    #9b59b6,
+    #2ecc71,
+    #f1c40f
+  );
+  background-size: 400% 400%;
+  animation: gradient-animation 35s ease infinite;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 5px;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

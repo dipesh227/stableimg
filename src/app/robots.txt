@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stableimg.yourdomain.com/sitemap.xml
