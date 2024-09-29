@@ -1,6 +1,6 @@
 'use client'
 import React from "react";
-import { BackgroundLines } from "@/components/ui/background-lines";
+
 import Spline from '@splinetool/react-spline/next';
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -67,7 +67,7 @@ export default function Home() {
   };
 
   return (
-    <BackgroundLines className="flex items-center justify-center w-full px-4">
+    <>
       <motion.div
         className="flex flex-col md:flex-row w-full"
         variants={containerVariants}
@@ -140,6 +140,7 @@ export default function Home() {
           />
         </motion.div>
       </motion.div>
-    </BackgroundLines>
+
+    </>
   );
 }

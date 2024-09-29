@@ -12,7 +12,7 @@ const Header: FC<HeaderProps> = () => {
                     <Link href="/" className=" gradient-text text-4xl font-bold transition-all duration-300 hover:scale-105">
                         Stabel Image
                     </Link>
-                    <span className="text-sm text-gray-500">Free AI Image Generator</span>
+                    <span className="text-sm text-gray-500">Generate amazing images using AI with Stable Image</span>
                 </div>
                 <nav>
                     <ul className="flex space-x-6">

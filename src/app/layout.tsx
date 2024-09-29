@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Header from "@/components/header";
+import { BackgroundLines } from "@/components/ui/background-lines";
+import "./globals.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -16,8 +17,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'StableImg - AI Image Generator',
-  description: 'Generate amazing images using AI with StableImg',
+  title: 'StableImg - Free AI Image Generator',
+  description: 'Generate amazing images using AI with Stable Image',
   keywords: ['AI', 'image generation', 'stable diffusion', 'art', 'creative'],
   authors: [{ name: 'Your Name' }],
   creator: 'Your Name or Company',
@@ -67,8 +68,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          {children}
+          <BackgroundLines>
+            <Header />
+            {children}
+          </BackgroundLines>
         </ThemeProvider>
       </body>
     </html>
