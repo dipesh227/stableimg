@@ -33,7 +33,7 @@ const Header: FC<HeaderProps> = () => {
             >
                 <Link
                     href={item.href}
-                    className={`transition-all duration-300 ${mobile ? 'text-lg font-medium hover:underline hover:opacity-80 dark:text-white' : 'text-base md:text-lg hover:underline hover:opacity-80'}`}
+                    className={`transition-all duration-300 ${mobile ? 'text-lg font-medium hover:underline hover:opacity-80 dark:text-white' : 'text-base md:text-lg hover:underline hover:opacity-80'} cursor-pointer`}
                     onClick={mobile ? () => setIsMobileMenuOpen(false) : undefined}
                 >
                     {item.label}
@@ -55,7 +55,7 @@ const Header: FC<HeaderProps> = () => {
         !session ? (
             <Button
                 variant="outline"
-                className={`transition-all duration-300 hover:scale-105 hover:shadow-md ${mobile ? 'w-full dark:text-white dark:border-white' : 'hidden md:block'}`}
+                className={`transition-all duration-300 hover:scale-105 hover:shadow-md ${mobile ? 'w-full dark:text-white dark:border-white' : 'hidden md:block'} cursor-pointer`}
                 onClick={handleSignIn}
             >
                 Sign In
@@ -63,7 +63,7 @@ const Header: FC<HeaderProps> = () => {
         ) : mobile ? (
             <Button
                 variant="outline"
-                className="w-full transition-all duration-300 hover:scale-105 hover:shadow-md dark:text-white dark:border-white"
+                className="w-full transition-all duration-300 hover:scale-105 hover:shadow-md dark:text-white dark:border-white cursor-pointer"
                 onClick={handleSignOut}
             >
                 Logout
@@ -71,7 +71,7 @@ const Header: FC<HeaderProps> = () => {
         ) : (
             <DropdownMenu >
                 <DropdownMenuTrigger asChild>
-                    <Avatar>
+                    <Avatar className="cursor-pointer">
                         <AvatarImage src={session.user?.image || undefined} />
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
@@ -79,7 +79,7 @@ const Header: FC<HeaderProps> = () => {
                 <DropdownMenuContent className="w-56">
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleSignOut}>
+                    <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer">
                         Logout
                         <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                     </DropdownMenuItem>
@@ -92,7 +92,7 @@ const Header: FC<HeaderProps> = () => {
         <header className="shadow-xl dark:shadow-slate-500">
             <div className="container mx-auto px-4 py-2 flex items-center justify-between">
                 <div className="flex flex-col items-center">
-                    <Link href="/" className="gradient-text text-3xl md:text-4xl font-bold transition-all duration-300 hover:scale-105">
+                    <Link href="/" className="gradient-text text-3xl md:text-4xl font-bold transition-all duration-300 hover:scale-105 cursor-pointer">
                         Stabel Image
                     </Link>
                     <span className="text-xs md:text-sm text-gray-500 text-center">Generate amazing images using AI with Stable Image</span>
@@ -105,7 +105,7 @@ const Header: FC<HeaderProps> = () => {
                 <div className='flex items-center space-x-2 md:space-x-4'>
                     <ModeToggle />
                     {renderAuthButton()}
-                    <button className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                    <button className="md:hidden cursor-pointer" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                         {isMobileMenuOpen ? (
                             <XMarkIcon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
                         ) : (
@@ -123,13 +123,13 @@ const Header: FC<HeaderProps> = () => {
             >
                 <div className="container mx-auto px-6 relative h-full flex flex-col justify-center">
                     <button
-                        className="absolute top-4 right-4"
+                        className="absolute top-4 right-4 cursor-pointer"
                         onClick={() => setIsMobileMenuOpen(false)}
                     >
                         <XMarkIcon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
                     </button>
                     <div className="flex flex-col items-center mb-6">
-                        <Link href="/" className="gradient-text text-3xl md:text-4xl font-bold transition-all duration-300 hover:scale-105">
+                        <Link href="/" className="gradient-text text-3xl md:text-4xl font-bold transition-all duration-300 hover:scale-105 cursor-pointer">
                             Stabel Image
                         </Link>
                         <span className="text-xs md:text-sm text-gray-500 text-center">Generate amazing images using AI with Stable Image</span>
