@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
@@ -26,20 +20,28 @@ export const metadata: Metadata = {
   title: 'StableImg - Free AI Image Generator',
   description: 'Generate amazing images using AI with Stable Image',
   keywords: ['AI', 'image generation', 'stable diffusion', 'art', 'creative'],
-  authors: [{ name: 'Your Name' }],
-  creator: 'Your Name or Company',
-  publisher: 'Your Name or Company',
+  authors: [{ name: 'Dipesh Joshi' }],
+  creator: 'Dipesh Joshi',
+  publisher: 'Dipesh Joshi',
   openGraph: {
     title: 'StableImg - AI Image Generator',
     description: 'Create stunning images with AI technology',
-    url: 'https://stableimg.yourdomain.com',
+    url: '/favicon.ico',
     siteName: 'StableImg',
     locale: 'en_US',
     type: 'website',
   },
-
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png' },
+    ],
+  },
 }
-
 export default function RootLayout({
   children,
 }: Readonly<{
