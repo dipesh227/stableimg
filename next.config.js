@@ -4,12 +4,6 @@ const nextConfig = {
   publicRuntimeConfig: {
     staticFolder: "/public",
   },
-  localPatterns: [
-    {
-      pathname: "",
-      search: "",
-    },
-  ],
 };
 
 module.exports = nextConfig;
