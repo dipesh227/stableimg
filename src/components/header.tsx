@@ -43,7 +43,7 @@ const Header: FC<HeaderProps> = () => {
     );
 
     const handleSignIn = async () => {
-        await signIn("google", { callbackUrl: window.location.pathname });
+        await signIn("google", { callbackUrl: window.location.origin + window.location.pathname });
     };
 
     const handleSignOut = async () => {
