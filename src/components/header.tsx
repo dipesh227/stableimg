@@ -5,10 +5,89 @@ import { Button } from '@/components/ui/button';
 import { ModeToggle } from './ModeToggle';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion';
+import { signIn, useSession, signOut } from "next-auth/react"
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuShortcut } from './ui/dropdown-menu';
+import { useRouter } from 'next/navigation';
 
 type HeaderProps = object
+
 const Header: FC<HeaderProps> = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { data: session } = useSession()
+    const router = useRouter();
+
+    const navItems = [
+        { href: "/", label: "Home" },
+        { href: "/about", label: "About" },
+        { href: "/contact", label: "Contact" },
+    ];
+
+    const renderNavItems = (mobile: boolean = false) => (
+        navItems.map((item, index) => (
+            <motion.li
+                key={item.href}
+                initial={mobile ? { opacity: 0, y: 20 } : {}}
+                animate={mobile ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.1 * (index + 1) }}
+            >
+                <Link
+                    href={item.href}
+                    className={`transition-all duration-300 ${mobile ? 'text-lg font-medium hover:underline hover:opacity-80 dark:text-white' : 'text-base md:text-lg hover:underline hover:opacity-80'}`}
+                    onClick={mobile ? () => setIsMobileMenuOpen(false) : undefined}
+                >
+                    {item.label}
+                </Link>
+            </motion.li>
+        ))
+    );
+
+    const handleSignIn = async () => {
+        await signIn("google", { callbackUrl: window.location.pathname });
+    };
+
+    const handleSignOut = async () => {
+        await signOut({ redirect: false });
+        router.refresh();
+    };
+
+    const renderAuthButton = (mobile: boolean = false) => (
+        !session ? (
+            <Button
+                variant="outline"
+                className={`transition-all duration-300 hover:scale-105 hover:shadow-md ${mobile ? 'w-full dark:text-white dark:border-white' : 'hidden md:block'}`}
+                onClick={handleSignIn}
+            >
+                Sign In
+            </Button>
+        ) : mobile ? (
+            <Button
+                variant="outline"
+                className="w-full transition-all duration-300 hover:scale-105 hover:shadow-md dark:text-white dark:border-white"
+                onClick={handleSignOut}
+            >
+                Logout
+            </Button>
+        ) : (
+            <DropdownMenu >
+                <DropdownMenuTrigger asChild>
+                    <Avatar>
+                        <AvatarImage src={session.user?.image || undefined} />
+                        <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={handleSignOut}>
+                        Log out
+                        <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+        )
+    );
+
     return (
         <header className="shadow-xl dark:shadow-slate-500">
             <div className="container mx-auto px-4 py-2 flex items-center justify-between">
@@ -20,26 +99,12 @@ const Header: FC<HeaderProps> = () => {
                 </div>
                 <nav className="hidden md:block">
                     <ul className="flex space-x-4 md:space-x-6">
-                        <li>
-                            <Link href="/" className="transition-all duration-300 text-base md:text-lg hover:underline hover:opacity-80">
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/about" className="transition-all duration-300 text-base md:text-lg hover:underline hover:opacity-80">
-                                About
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/contact" className="transition-all duration-300 text-base md:text-lg hover:underline hover:opacity-80">
-                                Contact
-                            </Link>
-                        </li>
+                        {renderNavItems()}
                     </ul>
                 </nav>
                 <div className='flex items-center space-x-2 md:space-x-4'>
                     <ModeToggle />
-                    <Button variant="outline" className="transition-all duration-300 hover:scale-105 hover:shadow-md hidden md:block">Sign In</Button>
+                    {renderAuthButton()}
                     <button className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                         {isMobileMenuOpen ? (
                             <XMarkIcon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
@@ -70,40 +135,14 @@ const Header: FC<HeaderProps> = () => {
                         <span className="text-xs md:text-sm text-gray-500 text-center">Generate amazing images using AI with Stable Image</span>
                     </div>
                     <ul className="flex flex-col items-center space-y-4">
-                        <motion.li
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                        >
-                            <Link href="/" className="text-lg font-medium hover:underline hover:opacity-80 dark:text-white" onClick={() => setIsMobileMenuOpen(false)}>
-                                Home
-                            </Link>
-                        </motion.li>
-                        <motion.li
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                        >
-                            <Link href="/about" className="text-lg font-medium hover:underline hover:opacity-80 dark:text-white" onClick={() => setIsMobileMenuOpen(false)}>
-                                About
-                            </Link>
-                        </motion.li>
-                        <motion.li
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3 }}
-                        >
-                            <Link href="/contact" className="text-lg font-medium hover:underline hover:opacity-80 dark:text-white" onClick={() => setIsMobileMenuOpen(false)}>
-                                Contact
-                            </Link>
-                        </motion.li>
+                        {renderNavItems(true)}
                         <motion.li
                             className="mt-6"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
                         >
-                            <Button variant="outline" className="w-full transition-all duration-300 hover:scale-105 hover:shadow-md dark:text-white dark:border-white" onClick={() => setIsMobileMenuOpen(false)}>Sign In</Button>
+                            {renderAuthButton(true)}
                         </motion.li>
                     </ul>
                 </div>

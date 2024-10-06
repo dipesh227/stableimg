@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import Header from "@/components/header";
 import { BackgroundLines } from "@/components/ui/background-lines";
 import "./globals.css";
+import Provider from "./provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -59,8 +60,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <BackgroundLines>
-            <Header />
-            {children}
+            <Provider>
+              <Header />
+              {children}
+            </Provider>
           </BackgroundLines>
         </ThemeProvider>
       </body>
