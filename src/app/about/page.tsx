@@ -59,7 +59,7 @@ function About() {
             { name: 'Dipesh Joshi', role: 'Team Lead', image: '/path-to-dipesh-image.jpg' },
             { name: 'Bhaskar Bhatt', role: 'AI Engineer', image: '/path-to-bhaskar-image.jpg' },
             { name: 'Rudresh Manral', role: 'Frontend Developer', image: '/path-to-rudresh-image.jpg' },
-            { name: 'Shohel Khan', role: 'Backend Developer', image: '/path-to-shohel-image.jpg' },
+            { name: 'Sohil Khan', role: 'Backend Developer', image: '/path-to-shohel-image.jpg' },
           ].map((member, index) => (
             <motion.div
               key={index}
