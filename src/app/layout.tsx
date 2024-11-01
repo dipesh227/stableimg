@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import { BackgroundLines } from "@/components/ui/background-lines";
 import "./globals.css";
 import Provider from "./provider";
+import { cookies } from 'next/headers';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
